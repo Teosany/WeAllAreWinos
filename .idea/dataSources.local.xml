@@ -9,7 +9,9 @@
       <user-name>app</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database" qname="app" />
+          <node kind="database" qname="app">
+            <node kind="schema" qname="@" />
+          </node>
         </introspection-scope>
       </schema-mapping>
     </data-source>

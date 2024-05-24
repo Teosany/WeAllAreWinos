@@ -66,6 +66,13 @@ class Wine
     #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'wines')]
     private Collection $tags;
 
+    #[ORM\ManyToOne(inversedBy: 'wines')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?GrapeVariety $grapeVariety = null;
+
+    #[ORM\Column]
+    private ?int $price = null;
+
     public function __construct()
     {
         $this->boxes = new ArrayCollection();
@@ -274,6 +281,30 @@ class Wine
         if ($this->tags->removeElement($tag)) {
             $tag->removeWine($this);
         }
+
+        return $this;
+    }
+
+    public function getGrapeVariety(): ?GrapeVariety
+    {
+        return $this->grapeVariety;
+    }
+
+    public function setGrapeVariety(?GrapeVariety $grapeVariety): static
+    {
+        $this->grapeVariety = $grapeVariety;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }

@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\BoxRepository;
+use App\Repository\GrapeVarietyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: BoxRepository::class)]
-class Box
+#[ORM\Entity(repositoryClass: GrapeVarietyRepository::class)]
+class GrapeVariety
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,11 +22,11 @@ class Box
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $thumbnail = null;
-
     #[ORM\Column(length: 255)]
     private ?string $status = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $thumbnail = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $plot = null;
@@ -37,21 +37,15 @@ class Box
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'boxes')]
-    private ?Wine $wine = null;
-
     /**
-     * @var Collection<int, Tag>
+     * @var Collection<int, Wine>
      */
-    #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'boxes')]
-    private Collection $tags;
-
-    #[ORM\Column]
-    private ?int $price = null;
+    #[ORM\OneToMany(targetEntity: Wine::class, mappedBy: 'grapeVariety')]
+    private Collection $wines;
 
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
+        $this->wines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,18 +77,6 @@ class Box
         return $this;
     }
 
-    public function getThumbnail(): ?string
-    {
-        return $this->thumbnail;
-    }
-
-    public function setThumbnail(?string $thumbnail): static
-    {
-        $this->thumbnail = $thumbnail;
-
-        return $this;
-    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -103,6 +85,18 @@ class Box
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): static
+    {
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }
@@ -143,53 +137,32 @@ class Box
         return $this;
     }
 
-    public function getWine(): ?Wine
-    {
-        return $this->wine;
-    }
-
-    public function setWine(?Wine $wine): static
-    {
-        $this->wine = $wine;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, Tag>
+     * @return Collection<int, Wine>
      */
-    public function getTags(): Collection
+    public function getWines(): Collection
     {
-        return $this->tags;
+        return $this->wines;
     }
 
-    public function addTag(Tag $tag): static
+    public function addWine(Wine $wine): static
     {
-        if (!$this->tags->contains($tag)) {
-            $this->tags->add($tag);
-            $tag->addBox($this);
+        if (!$this->wines->contains($wine)) {
+            $this->wines->add($wine);
+            $wine->setGrapeVariety($this);
         }
 
         return $this;
     }
 
-    public function removeTag(Tag $tag): static
+    public function removeWine(Wine $wine): static
     {
-        if ($this->tags->removeElement($tag)) {
-            $tag->removeBox($this);
+        if ($this->wines->removeElement($wine)) {
+            // set the owning side to null (unless already changed)
+            if ($wine->getGrapeVariety() === $this) {
+                $wine->setGrapeVariety(null);
+            }
         }
-
-        return $this;
-    }
-
-    public function getPrice(): ?int
-    {
-        return $this->price;
-    }
-
-    public function setPrice(int $price): static
-    {
-        $this->price = $price;
 
         return $this;
     }
