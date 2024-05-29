@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\SupplierStatus;
 use App\Repository\SupplierRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SupplierRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Supplier
 {
     #[ORM\Id]
@@ -26,7 +28,7 @@ class Supplier
     private ?string $thumbnail = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?SupplierStatus $status = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $plot = null;
@@ -46,6 +48,23 @@ class Supplier
     public function __construct()
     {
         $this->wines = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
+    }
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
     }
 
     public function getId(): ?int
@@ -89,12 +108,12 @@ class Supplier
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?SupplierStatus
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(SupplierStatus $status): static
     {
         $this->status = $status;
 

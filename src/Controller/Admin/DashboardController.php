@@ -2,34 +2,30 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Box;
+use App\Entity\Category;
+use App\Entity\GrapeVariety;
+use App\Entity\Supplier;
+use App\Entity\Tag;
+use App\Entity\Wine;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use http\Client\Curl\User;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class DashboardController extends AbstractDashboardController
 {
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        return parent::index();
+        $routeBuilder = $this->container->get(AdminUrlGenerator::class);
+        $url = $routeBuilder->setController(WineCrudController::class)->generateUrl();
 
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
-        // return $this->render('some/path/my-dashboard.html.twig');
+        return $this->redirect($url);
     }
 
     public function configureDashboard(): Dashboard
@@ -38,9 +34,24 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('WeAllAreWinos');
     }
 
+    public function configureCrud(): Crud
+    {
+        return Crud::new()
+            // this defines the pagination size for all CRUD controllers
+            // (each CRUD controller can override this value if needed)
+            ->setPaginatorPageSize(10)
+            ->setDefaultSort(['id' => 'DESC']);
+//            ->setTimezone('Europe/Paris');
+    }
+
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'index');
+        yield MenuItem::linkToCrud('Boxes', 'fa-solid fa-box', Box::class);
+        yield MenuItem::linkToCrud('Category\'s', 'fa-solid fa-list', Category::class);
+        yield MenuItem::linkToCrud('GrapeVariety', 'fa-solid fa-plant-wilt', GrapeVariety::class);
+        yield MenuItem::linkToCrud('Suppliers', 'fa-solid fa-truck-field', Supplier::class);
+        yield MenuItem::linkToCrud('Tags', 'fa-solid fa-tag', Tag::class);
+        yield MenuItem::linkToCrud('Wine', 'fa-solid fa-wine-bottle', Wine::class);
     }
 }

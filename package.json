@@ -1,4 +1,5 @@
 {
-    "devDependencies": {
+    "dependencies": {
+        "flowbite": "^2.3.0"
     }
 }

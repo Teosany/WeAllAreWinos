@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
+use App\Enum\WineStatus;
 use App\Repository\WineRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: WineRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Wine
 {
     #[ORM\Id]
@@ -23,7 +26,7 @@ class Wine
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?WineStatus $status = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $thumbnail = null;
@@ -31,6 +34,7 @@ class Wine
     #[ORM\Column(type: Types::TEXT)]
     private ?string $plot = null;
 
+    #[Assert\Isbn(type: 'isbn13')]
     #[ORM\Column(length: 255)]
     private ?string $isbn = null;
 
@@ -79,6 +83,23 @@ class Wine
         $this->tags = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->title;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
+    }
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,12 +129,12 @@ class Wine
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?WineStatus
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(WineStatus $status): static
     {
         $this->status = $status;
 

@@ -29,4 +29,13 @@ return [
         'version' => '2.3.0',
         'type' => 'css',
     ],
+    'tailwindcss/plugin' => [
+        'version' => '3.4.3',
+    ],
+    'preline/plugin' => [
+        'version' => '2.3.0',
+    ],
+    'preline/dist' => [
+        'version' => '2.3.0',
+    ],
 ];

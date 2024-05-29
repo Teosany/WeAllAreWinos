@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\GrapeVarietyStatus;
 use App\Repository\GrapeVarietyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: GrapeVarietyRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class GrapeVariety
 {
     #[ORM\Id]
@@ -23,7 +25,7 @@ class GrapeVariety
     private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?GrapeVarietyStatus $status = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $thumbnail = null;
@@ -46,6 +48,23 @@ class GrapeVariety
     public function __construct()
     {
         $this->wines = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
+    }
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
     }
 
     public function getId(): ?int
@@ -77,12 +96,12 @@ class GrapeVariety
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?GrapeVarietyStatus
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(GrapeVarietyStatus $status): static
     {
         $this->status = $status;
 

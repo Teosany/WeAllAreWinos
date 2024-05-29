@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\BoxStatus;
 use App\Repository\BoxRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BoxRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Box
 {
     #[ORM\Id]
@@ -22,11 +24,14 @@ class Box
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column]
+    private ?int $price = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $thumbnail = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?BoxStatus $status = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $plot = null;
@@ -46,12 +51,26 @@ class Box
     #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'boxes')]
     private Collection $tags;
 
-    #[ORM\Column]
-    private ?int $price = null;
-
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
+    }
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
     }
 
     public function getId(): ?int
@@ -95,12 +114,12 @@ class Box
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?BoxStatus
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(BoxStatus $status): static
     {
         $this->status = $status;
 

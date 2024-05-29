@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./assets/**/*.js",
     "./templates/**/*.html.twig",
+    './assets/vendor/preline/*.js',
   ],
   theme: {
     extend: {},
@@ -10,6 +11,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+    require('preline/plugin'),
   ],
 }
 

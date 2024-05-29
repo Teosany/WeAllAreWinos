@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\TagStatus;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Tag
 {
     #[ORM\Id]
@@ -32,7 +34,7 @@ class Tag
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?TagStatus $status = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $plot = null;
@@ -54,7 +56,22 @@ class Tag
         $this->wines = new ArrayCollection();
         $this->boxes = new ArrayCollection();
     }
+    public function __toString()
+    {
+        return $this->name;
+    }
 
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
+    }
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTimeImmutable('', new \DateTimeZone('Europe/Paris'));
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -120,12 +137,12 @@ class Tag
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getStatus(): ?TagStatus
     {
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(TagStatus $status): static
     {
         $this->status = $status;
 
