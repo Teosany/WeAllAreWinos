@@ -7,9 +7,5 @@
 import './styles/app.css';
 
 import 'preline';
-import 'preline/plugin';
-
-// import 'preline/dist/preline.js';
-// import 'flowbite';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

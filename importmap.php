@@ -16,26 +16,16 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
-    'preline' => [
-        'version' => '2.1.0',
-    ],
-    'flowbite' => [
-        'version' => '2.3.0',
-    ],
     '@popperjs/core' => [
         'version' => '2.11.8',
-    ],
-    'flowbite/dist/flowbite.min.css' => [
-        'version' => '2.3.0',
-        'type' => 'css',
     ],
     'tailwindcss/plugin' => [
         'version' => '3.4.3',
     ],
-    'preline/plugin' => [
+    'preline' => [
         'version' => '2.3.0',
     ],
-    'preline/dist' => [
+    'preline/plugin' => [
         'version' => '2.3.0',
     ],
 ];

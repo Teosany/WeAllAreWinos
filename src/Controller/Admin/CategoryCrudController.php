@@ -31,8 +31,7 @@ class CategoryCrudController extends AbstractCrudController
         yield ImageField::new('thumbnail')
             ->setUploadDir('public/images/categories/')
             ->setBasePath('images/categories/')
-            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');;
-
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
         yield AssociationField::new('wines');
 
         $createdAt = DateTimeField::new('createdAt');

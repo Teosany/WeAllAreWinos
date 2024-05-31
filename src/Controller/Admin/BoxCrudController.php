@@ -32,7 +32,10 @@ class BoxCrudController extends AbstractCrudController
         yield TextField::new('name');
         yield SlugField::new('slug')->setTargetFieldName('name');
         yield MoneyField::new('price')->setCurrency('EUR');
-        yield ImageField::new('thumbnail')->setUploadDir('assets/images/boxes/')->setBasePath('images/boxes/');
+        yield ImageField::new('thumbnail')
+            ->setUploadDir('assets/images/boxes/')
+            ->setBasePath('images/boxes/')
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
         yield ChoiceField::new('status');
         yield TextEditorField::new('plot');
         yield AssociationField::new('wine');
