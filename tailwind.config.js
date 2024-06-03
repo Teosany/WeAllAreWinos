@@ -3,7 +3,6 @@ module.exports = {
   content: [
     "./assets/**/*.js",
     "./templates/**/*.{ts,tsx,html,js,html.twig}",
-    // './node_modules/preline/*.js',
     './assets/vendor/preline/*.js',
   ],
   theme: {
