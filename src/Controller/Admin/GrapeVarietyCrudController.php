@@ -30,7 +30,7 @@ class GrapeVarietyCrudController extends AbstractCrudController
         yield TextField::new('name');
         yield SlugField::new('slug')->setTargetFieldName('name');
         yield ChoiceField::new('status');
-        yield ImageField::new('thumbnail')->setUploadDir('assets/images/grapes/')->setBasePath('images/grapes/');
+        yield ImageField::new('thumbnail')->setUploadDir('public/images/grapes/')->setBasePath('images/grapes/');
         yield TextEditorField::new('plot');
         yield AssociationField::new('wines');
 

@@ -27,7 +27,7 @@ class TagCrudController extends AbstractCrudController
         yield TextField::new('name');
         yield SlugField::new('slug')->setTargetFieldName('name');
         yield ChoiceField::new('status');
-        yield ImageField::new('thumbnail')->setUploadDir('assets/images/tags/')->setBasePath('images/tags/');
+        yield ImageField::new('thumbnail')->setUploadDir('public/images/tags/')->setBasePath('images/tags/');
         yield TextEditorField::new('plot');
         yield AssociationField::new('wines');
         yield AssociationField::new('boxes');

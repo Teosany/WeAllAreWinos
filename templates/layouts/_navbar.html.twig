@@ -1,6 +1,6 @@
 <header>
     <nav class="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b border-gray-200 text-sm py-3 sm:py-3 dark:bg-neutral-800 dark:border-neutral-700">
-        <div class="relative max-w-[85rem] w-full mx-auto px-4 sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
+        <div class="relative max-w-[95rem] w-full mx-auto px-4 sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
             <div class="flex items-center justify-between">
                 <div class="hidden w-full text-gray-600 md:flex md:items-center">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -14,14 +14,14 @@
                     <span class="mx-1 text-sm">FR</span>
                 </div>
                 <div class="prose text-center font-mono w-full text-gray-700 md:text-center text-xl">
-                    <h2>We Are All Winos</h2>
+                    <h2><a href="{{ path('index') }}" class="no-underline">We Are All Winos</a></h2>
                 </div>
                 <div class="flex items-center justify-end w-full">
                     <div class="flex relative hs-dropdown [--strategy:static] [--strategy:absolute] [--adaptive:none]">
-                        <a href="#" class="text-gray-600 focus:outline-none mx-2">
+                        <button class="text-gray-600 focus:outline-none mx-2">
                             <span class="sr-only">Open user menu</span>
                             {{ ux_icon('mdi:user-outline', {class: 'size-5'}) }}
-                        </a>
+                        </button>
 
                         <div class="hs-dropdown-menu transition-[opacity,margin] sm:border duration-[150ms] hs-dropdown-open:opacity-100 opacity-0 hidden absolute right-0 z-10 mt-9 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                              role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -43,7 +43,7 @@
                                role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
-                    <button class="text-gray-600 focus:outline-none mx-4">
+                    <button class="text-gray-600 focus:outline-none mx-4" data-hs-overlay="#hs-cart">
                         <svg class="flex-shrink-0 size-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                              viewBox="0 0 24 24"
                              stroke="currentColor">
@@ -91,7 +91,8 @@
 
     <!-- Sidebar -->
     <div id="aplication-sidebar"
-         class="hs-overlay hs-overlay-backdrop-open:backdrop-blur-[3px] hs-overlay-backdrop-open:bg-blue/30 hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full
+         class="hs-overlay hs-overlay-backdrop-open:backdrop-blur-[3px] hs-overlay-backdrop-open:bg-blue/30
+        hs-overlay-open:translate-x-0 hidden translate-x-full fixed top-0 end-0 transition-all duration-300 transform h-full
         z-[80] w-8/12 lg:w-4/12 bg-white border-s border-gray-200 py-7 px-8 overflow-y-auto d[&::-webkit-scrollbar]:w-2
         [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100
         dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700">
@@ -115,35 +116,53 @@
                     </svg>
                 </button>
             </div>
-            <ul class="prose prose-2xl prose-li:px-0 border-s border-gray-200 prose-a:no-underline prose-a:font-light prose-a:text-[#6B7280] space-y-2 dark:border-neutral-800"
+            <ul class="prose prose-2xl prose-li:px-0 border-s border-gray-200 prose-a:no-underline prose-a:font-light prose-a:text-zinc-600 space-y-2 dark:border-neutral-800
+                       prose-a:block prose-a:py-1 prose-a:ps-4 prose-a:-ms-px prose-a:border-s-2 prose-a:border-transparent"
                 data-hs-scrollspy="#scrollspy">
                 <li>
-                    <a class="block py-1 ps-4 -ms-px border-s-2 border-transparent text-gray-700 hover:border-gray-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == 'index' ? 'active' : '' }}"
+                    <a class="hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == 'index' ? 'active' : '' }}"
                        href="{{ path('index') }}">Boutique</a></li>
                 <li>
-                    <a class="block py-1 ps-4 -ms-px border-s-2 border-transparent text-gray-700 hover:border-gray-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
+                    <a class="hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
                        href="#">Wins</a>
-                    <ul class="prose prose-xl prose-a:px-4 px-12 marker:text-blue-600 list-disc"
+                    <ul class="prose prose-xl prose-li:pl-10 px-0"
                         data-hs-scrollspy="#scrollspy">
-                        <li>
-                            <a class="block py-1 -ms-px border-s-2 border-transparent text-gray-700 hover:border-gray-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active' : '' }}"
-                               href="{{ path('index') }}">Rouges</a>
+                        <li class="block -ms-px border-s-2 border-transparent hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active' : '' }}">
+                            <div>
+                                <a class="hover:text-zinc-950 relative last-of-type:before:absolute before:absolute before:top-1/2 before:start-0 before:-translate-y-1/2 before:size-1 before:bg-red-500 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600"
+                                        href="{{ path('index') }}">Rouges</a>
+                            </div>
+                        </li>
+                        <li class="block -ms-px border-s-2 border-transparent hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active' : '' }}">
+                            <div>
+                                <a class="hover:text-zinc-950 block px-4 relative last-of-type:before:absolute before:absolute before:top-1/2 before:start-0 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600"
+                                        href="{{ path('index') }}">Blancs</a>
+                            </div>
+                        </li>
+                        <li class="block -ms-px border-s-2 border-transparent hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active' : '' }}">
+                            <div>
+                                <a class="hover:text-zinc-950 block px-4 relative last-of-type:before:absolute before:absolute before:top-1/2 before:start-0 before:-translate-y-1/2 before:size-1 before:bg-yellow-400 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600"
+                                        href="{{ path('index') }}">Champagnes</a>
+                            </div>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a class="block py-1 ps-4 -ms-px border-s-2 border-transparent text-gray-700 hover:border-gray-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
+                    <a class="hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
                        href="#">Coffrets</a></li>
                 <li>
-                    <a class="block py-1 ps-4 -ms-px border-s-2 border-transparent text-gray-700 hover:border-gray-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
+                    <a class="hover:text-zinc-950 hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
                        href="#">Fournisseurs</a></li>
                 <li>
-                    <a class="block py-1 ps-4 -ms-px border-s-2 border-transparent text-gray-700 hover:border-gray-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
+                    <a class="hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
                        href="#">À propos</a></li>
-                <li>
-                    <a class="block py-1 ps-4 -ms-px border-s-2 border-transparent text-gray-700 hover:border-gray-400 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
-                       href="#">Sixth</a></li>
             </ul>
+            <a href="sdf" class="block pt-2 pb-2 prose prose-xl text-zinc-600 hover:text-zinc-950 dark:text-white">
+                LOGIN
+            </a>
+            <a href="sdf" class="prose prose-xl text-zinc-600 hover:text-zinc-950 dark:text-white">
+                CRÉÉ MON COMPTE
+            </a>
         </nav>
     </div>
     <!-- End Sidebar -->

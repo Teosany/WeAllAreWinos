@@ -27,7 +27,7 @@ class SupplierCrudController extends AbstractCrudController
         yield TextField::new('name');
         yield SlugField::new('slug')->setTargetFieldName('name');
         yield ChoiceField::new('status');
-        yield ImageField::new('thumbnail')->setUploadDir('assets/images/suppliers/')->setBasePath('images/suppliers/');
+        yield ImageField::new('thumbnail')->setUploadDir('public/images/suppliers/')->setBasePath('images/suppliers/');
         yield TextEditorField::new('plot');
         yield AssociationField::new('wines');
 

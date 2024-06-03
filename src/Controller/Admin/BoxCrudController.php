@@ -33,7 +33,7 @@ class BoxCrudController extends AbstractCrudController
         yield SlugField::new('slug')->setTargetFieldName('name');
         yield MoneyField::new('price')->setCurrency('EUR');
         yield ImageField::new('thumbnail')
-            ->setUploadDir('assets/images/boxes/')
+            ->setUploadDir('public/images/boxes/')
             ->setBasePath('images/boxes/')
             ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
         yield ChoiceField::new('status');

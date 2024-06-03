@@ -74,7 +74,7 @@ class Wine
     #[ORM\JoinColumn(nullable: false)]
     private ?GrapeVariety $grapeVariety = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type:"integer")]
     private ?int $price = null;
 
     public function __construct()
