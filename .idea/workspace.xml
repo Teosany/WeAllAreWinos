@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c6b8374-e0d6-4aaf-8d3b-db8aaf271612" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.symfony.local.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.symfony.local.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +260,7 @@
       <workItem from="1717155555788" duration="79000" />
       <workItem from="1717155642196" duration="21880000" />
       <workItem from="1717502684585" duration="28000" />
-      <workItem from="1717502903028" duration="1265000" />
+      <workItem from="1717502903028" duration="1601000" />
     </task>
     <servers />
   </component>
