@@ -5,11 +5,14 @@ type: php:8.3
 runtime:
     extensions:
         - apcu
+        - pdo_pgsql
         - mbstring
         - sodium
         - ctype
         - iconv
-        
+
+relationships:
+    database: "database:postgresql"
 
 #variables:
 #    php:
