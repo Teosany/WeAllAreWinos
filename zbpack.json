@@ -1,4 +1,3 @@
 {
-  "build_command": "php bin/console tailwind:build --minify ",
-  "start_command": "php bin/console asset-map:compile"
+
 }
