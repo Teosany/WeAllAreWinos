@@ -1,3 +1,4 @@
 {
-"build_command": "php bin/console doctrine:migrations:migrate"
+  "build_command": "php bin/console doctrine:migrations:migrate",
+  "build_commanda": "php bin/console doctrine:migrations:migrate"
 }
