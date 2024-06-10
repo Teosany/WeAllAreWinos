@@ -1,0 +1,26 @@
+{
+    "app": {
+        "path": "\/assets\/app-8fee39abbba36e4086f8db238f67ab54.js",
+        "type": "js"
+    },
+    "\/assets\/styles\/app.css": {
+        "path": "\/assets\/styles\/app-87aa209c1c5673f073a1cffc3e4be2c6.css",
+        "type": "css"
+    },
+    "@popperjs\/core": {
+        "path": "\/assets\/vendor\/@popperjs\/core\/core.index-ceb5b6c0f9e1d3f6c78ef733facfdcda.js",
+        "type": "js"
+    },
+    "tailwindcss\/plugin": {
+        "path": "\/assets\/vendor\/tailwindcss\/plugin-5394d1bbca31e49a201332f39006ec6b.js",
+        "type": "js"
+    },
+    "preline": {
+        "path": "\/assets\/vendor\/preline\/preline.index-e7ff30cd34532c72be35a87124f11751.js",
+        "type": "js"
+    },
+    "preline\/plugin": {
+        "path": "\/assets\/vendor\/preline\/plugin-f3091c9590b0b90e1063b1888c09cad6.js",
+        "type": "js"
+    }
+}
