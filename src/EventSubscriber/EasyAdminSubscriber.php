@@ -32,7 +32,7 @@ readonly class EasyAdminSubscriber implements EventSubscriberInterface
             $this->projectDir .
             "/public/images/categories/" .
             $entity->getThumbnail();
-        if (file_exists($imgpath)) {
+        if (is_file($imgpath)) {
             unlink($imgpath);
         }
     }

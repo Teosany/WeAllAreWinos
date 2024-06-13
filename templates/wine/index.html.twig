@@ -4,6 +4,17 @@
     <div class="container mx-auto px-6">
         <h3 class="prose text-gray-700 text-2xl font-medium">Nos wins</h3>
         <span class="mt-3 text-sm text-gray-500">{% if wines|length == 0 or wines|length == 1 %}{{ wines|length ~ ' ' ~ 'Product'}}{% elseif wines|length > 200 %} 200+ Products {% else %} {{ wines|length ~ ' ' ~ 'Products'}} {% endif %}</span>
+        <div class="flex gap-6 pt-6 justify-center">
+            <button type="button" class="basis-28 py-2 px-4 items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                Rouges
+            </button>
+            <button type="button" class="basis-28 py-2 px-4 items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                Blancs
+            </button>
+            <button type="button" class="basis-28 py-2 px-4 items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                Champagnes
+            </button>
+        </div>
         <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
             {% for wine in wines %}
             <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">

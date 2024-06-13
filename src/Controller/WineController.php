@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Wine;
+use App\Repository\CategoryRepository;
 use App\Repository\WineRepository;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Doctrine\ORM\QueryAdapter;
@@ -16,7 +17,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class WineController extends AbstractController
 {
     public function __construct(
-        private readonly WineRepository $wineRepository
+        private readonly WineRepository $wineRepository,
+        private readonly CategoryRepository $categoryRepository,
     )
     {
     }
@@ -27,9 +29,47 @@ class WineController extends AbstractController
         $wines = Pagerfanta::createForCurrentPageWithMaxPerPage(
             new ArrayAdapter($this->wineRepository->findBy(['status' => 'available'])),
             $request->query->get('page', 1),
-            1
+            3
         );
-//        $wines = $this->wineRepository->findBy(['status' => 'available']);
+        return $this->render('wine/index.html.twig', [
+            'wines' => $wines,
+        ]);
+    }
+    #[Route('/red', name: 'index.red')]
+    public function red(Request $request): Response
+    {
+        $redWine = $this->categoryRepository->findOneBy(['slug' => 'red-wine']);
+        $wines = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            new ArrayAdapter($this->wineRepository->findBy(['status' => 'available', 'category' => $redWine->getId()])),
+            $request->query->get('page', 1),
+            3
+        );
+        return $this->render('wine/index.html.twig', [
+            'wines' => $wines,
+        ]);
+    }
+    #[Route('/white', name: 'index.white')]
+    public function white(Request $request): Response
+    {
+        $whiteWine = $this->categoryRepository->findOneBy(['slug' => 'white-wine']);
+        $wines = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            new ArrayAdapter($this->wineRepository->findBy(['status' => 'available', 'category' => $whiteWine->getId()])),
+            $request->query->get('page', 1),
+            3
+        );
+        return $this->render('wine/index.html.twig', [
+            'wines' => $wines,
+        ]);
+    }
+    #[Route('/white', name: 'index.champagnes')]
+    public function champagnes(Request $request): Response
+    {
+        $Champagne = $this->categoryRepository->findOneBy(['slug' => 'champagne']);
+        $wines = Pagerfanta::createForCurrentPageWithMaxPerPage(
+            new ArrayAdapter($this->wineRepository->findBy(['status' => 'available', 'category' => $whiteWine->getId()])),
+            $request->query->get('page', 1),
+            3
+        );
         return $this->render('wine/index.html.twig', [
             'wines' => $wines,
         ]);
