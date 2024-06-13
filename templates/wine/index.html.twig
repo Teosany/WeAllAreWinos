@@ -1,33 +1,42 @@
 {% extends 'base.html.twig' %}
+{% block title %}Wine{% endblock %}
 
 {% block body %}
-    <div class="container mx-auto px-6">
+    <div class="container max-w-[95em] mx-auto px-6 lg:px-8">
         <h3 class="prose text-gray-700 text-2xl font-medium">Nos wins</h3>
-        <span class="mt-3 text-sm text-gray-500">{% if wines|length == 0 or wines|length == 1 %}{{ wines|length ~ ' ' ~ 'Product'}}{% elseif wines|length > 200 %} 200+ Products {% else %} {{ wines|length ~ ' ' ~ 'Products'}} {% endif %}</span>
+        <span class="mt-3 text-sm text-gray-500">{% if wines|length == 0 or wines|length == 1 %}{{ wines|length ~ ' ' ~ 'Product' }}{% elseif wines|length > 200 %} 200+ Products {% else %} {{ wines|length ~ ' ' ~ 'Products' }} {% endif %}</span>
         <div class="flex gap-6 pt-6 justify-center">
-            <button type="button" class="basis-28 py-2 px-4 items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+            <a href="{{ app.current_route == 'wine.index.red' ? path('wine.index') : path('wine.index.red') }}" type="button"
+               class="basis-28 py-1.5 px-4 items-center text-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800
+                    hs-scrollspy-active:font-semibold hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] {{ app.current_route == 'wine.index.red' ? 'active' : '' }}">
                 Rouges
-            </button>
-            <button type="button" class="basis-28 py-2 px-4 items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+            </a>
+            <a href="{{ app.current_route == 'wine.index.white' ? path('wine.index') : path('wine.index.white') }}" type="button"
+               class="basis-28 py-1.5 px-4 items-center text-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 hs-scrollspy-active:font-semibold hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] {{ app.current_route == 'wine.index.white' ? 'active' : '' }}">
                 Blancs
-            </button>
-            <button type="button" class="basis-28 py-2 px-4 items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+            </a>
+            <a href="{{ app.current_route == 'wine.index.champagne' ? path('wine.index') : path('wine.index.champagne') }}" type="button"
+               class="basis-28 py-1.5 px-4 items-center text-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 hs-scrollspy-active:font-semibold hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] {{ app.current_route == 'wine.index.champagne' ? 'active' : '' }}">
                 Champagnes
-            </button>
+            </a>
         </div>
         <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
             {% for wine in wines %}
-            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-                <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url({{ asset('images/wines/') ~ wine.thumbnail }})">
-                    <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </button>
+                <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+                    <div class="flex items-end justify-end h-56 w-full bg-cover"
+                         style="background-image: url({{ asset('images/wines/') ~ wine.thumbnail }})">
+                        <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
+                            <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                 viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="px-5 py-3">
+                        <h3 class="text-gray-700 uppercase">{{ wine.title }}</h3>
+                        <span class="text-gray-500 mt-2">{{ (wine.price/100) | format_currency('EUR', locale='fr') }}</span>
+                    </div>
                 </div>
-                <div class="px-5 py-3">
-                    <h3 class="text-gray-700 uppercase">{{ wine.title }}</h3>
-                    <span class="text-gray-500 mt-2">{{ (wine.price/100) | format_currency('EUR', locale='fr') }}</span>
-                </div>
-            </div>
             {% endfor %}
         </div>
         <div class="mt-6 flex justify-center">

@@ -1,11 +1,19 @@
-/*@import '@fortawesome/fontawesome-free/css/fontawesome.min.css';*/
-/*@import '@fortawesome/fontawesome-free/scss/regular.scss';*/
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-    /*background-color: skyblue;*/
+body
+{
+}
+
+.menu-a {
+    @apply hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF]
+}
+
+.menu-ul-li {
+    @apply block -ms-px border-s-2 border-transparent hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:border-current dark:hs-scrollspy-active:text-[#FFF]
+}
+
+.menu-ul-li-a {
+    @apply hover:text-zinc-950 relative last-of-type:before:absolute before:absolute before:top-1/2 before:start-0 before:-translate-y-1/2 before:size-1 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600 hs-scrollspy-active:text-[#101827] hs-scrollspy-active:font-normal
 }

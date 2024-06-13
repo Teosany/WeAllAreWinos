@@ -24,3 +24,4 @@
 ###< symfony/asset-mapper ###
 
 /.idea/workspace.xml
+/assets/ar-image

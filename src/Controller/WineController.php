@@ -61,12 +61,12 @@ class WineController extends AbstractController
             'wines' => $wines,
         ]);
     }
-    #[Route('/white', name: 'index.champagnes')]
+    #[Route('/champagne', name: 'index.champagne')]
     public function champagnes(Request $request): Response
     {
-        $Champagne = $this->categoryRepository->findOneBy(['slug' => 'champagne']);
+        $champagne = $this->categoryRepository->findOneBy(['slug' => 'champagne']);
         $wines = Pagerfanta::createForCurrentPageWithMaxPerPage(
-            new ArrayAdapter($this->wineRepository->findBy(['status' => 'available', 'category' => $whiteWine->getId()])),
+            new ArrayAdapter($this->wineRepository->findBy(['status' => 'available', 'category' => $champagne->getId()])),
             $request->query->get('page', 1),
             3
         );

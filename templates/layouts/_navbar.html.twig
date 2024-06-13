@@ -117,51 +117,49 @@
                     </svg>
                 </button>
             </div>
-            <ul class="prose prose-2xl prose-li:px-0 border-s border-gray-200 prose-a:no-underline prose-a:font-light prose-a:text-zinc-600 space-y-2 dark:border-neutral-800
-                       prose-a:block prose-a:py-1 prose-a:ps-4 prose-a:-ms-px prose-a:border-s-2 prose-a:border-transparent"
+            <ul class="prose prose-2xl prose-li:px-0 border-s border-gray-200 prose-a:no-underline prose-a:font-light prose-a:text-zinc-600 space-y-2 dark:border-neutral-800 prose-a:block prose-a:py-1 prose-a:ps-4 prose-a:-ms-px prose-a:border-s-2 prose-a:border-transparent"
                 data-hs-scrollspy="#scrollspy">
                 <li>
-                    <a class="hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == 'index' ? 'active' : '' }}"
+                    <a class="menu-a {{ app.current_route == 'index' ? 'active' : '' }}"
                        href="{{ path('index') }}">Boutique</a></li>
                 <li>
-                    <a class="hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
-                       href="#">Wins</a>
-                    <ul class="prose prose-xl prose-li:pl-10 px-0"
-                        data-hs-scrollspy="#scrollspy">
-                        <li class="block -ms-px border-s-2 border-transparent hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active' : '' }}">
+                    <a class="menu-a {{ app.current_route == 'wine.index' ? 'active ' : '' }}"
+                       href="{{ path('wine.index') }}">Wins</a>
+                    <ul class="prose prose-xl prose-li:pl-10 px-0" data-hs-scrollspy="#scrollspy">
+                        <li class="menu-ul-li {{ app.current_route == 'wine.index.red' ? 'active' : '' }}">
                             <div>
-                                <a class="hover:text-zinc-950 relative last-of-type:before:absolute before:absolute before:top-1/2 before:start-0 before:-translate-y-1/2 before:size-1 before:bg-red-500 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600"
-                                        href="{{ path('index') }}">Rouges</a>
+                                <a class="menu-ul-li-a before:bg-red-500 {{ app.current_route == 'wine.index.red' ? 'active' : '' }}"
+                                   href="{{ path('wine.index.red') }}">Rouges</a>
                             </div>
                         </li>
-                        <li class="block -ms-px border-s-2 border-transparent hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active' : '' }}">
+                        <li class="menu-ul-li {{ app.current_route == 'wine.index.white' ? 'active' : '' }}">
                             <div>
-                                <a class="hover:text-zinc-950 block px-4 relative last-of-type:before:absolute before:absolute before:top-1/2 before:start-0 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600"
-                                        href="{{ path('index') }}">Blancs</a>
+                                <a class="menu-ul-li-a before:bg-gray-500 {{ app.current_route == 'wine.index.white' ? 'active' : '' }}"
+                                   href="{{ path('wine.index.white') }}">Blancs</a>
                             </div>
                         </li>
-                        <li class="block -ms-px border-s-2 border-transparent hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active' : '' }}">
+                        <li class="menu-ul-li {{ app.current_route == 'wine.index.champagne' ? 'active' : '' }}">
                             <div>
-                                <a class="hover:text-zinc-950 block px-4 relative last-of-type:before:absolute before:absolute before:top-1/2 before:start-0 before:-translate-y-1/2 before:size-1 before:bg-yellow-400 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600"
-                                        href="{{ path('index') }}">Champagnes</a>
+                                <a class="menu-ul-li-a before:bg-yellow-400 {{ app.current_route == 'wine.index.champagne' ? 'active' : '' }}"
+                                   href="{{ path('wine.index.champagne') }}">Champagnes</a>
                             </div>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a class="hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
+                    <a class="menu-a {{ app.current_route == '' ? 'active ' : '' }}"
                        href="#">Coffrets</a></li>
                 <li>
-                    <a class="hover:text-zinc-950 hover:border-gray-400 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
+                    <a class="menu-a {{ app.current_route == '' ? 'active ' : '' }}"
                        href="#">Fournisseurs</a></li>
                 <li>
-                    <a class="hover:border-gray-400 hover:text-zinc-950 dark:text-neutral-400 dark:hover:text-neutral-300 hs-scrollspy-active:font-medium hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] dark:hs-scrollspy-active:text-[#FFF] {{ app.current_route == '' ? 'active ' : '' }}"
+                    <a class="menu-a {{ app.current_route == '' ? 'active ' : '' }}"
                        href="#">À propos</a></li>
             </ul>
-            <a href="sdf" class="block pt-2 pb-2 prose prose-xl text-zinc-600 hover:text-zinc-950 dark:text-white">
+            <a href="a" class="block pt-2 pb-2 prose prose-xl text-zinc-600 hover:text-zinc-950 dark:text-white">
                 LOGIN
             </a>
-            <a href="sdf" class="prose prose-xl text-zinc-600 hover:text-zinc-950 dark:text-white">
+            <a href="a" class="prose prose-xl text-zinc-600 hover:text-zinc-950 dark:text-white">
                 CRÉÉ MON COMPTE
             </a>
         </nav>
