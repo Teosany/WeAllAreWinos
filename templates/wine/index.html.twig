@@ -7,23 +7,22 @@
         <span class="mt-3 text-sm text-gray-500">{% if wines|length == 0 or wines|length == 1 %}{{ wines|length ~ ' ' ~ 'Product' }}{% elseif wines|length > 200 %} 200+ Products {% else %} {{ wines|length ~ ' ' ~ 'Products' }} {% endif %}</span>
         <div class="flex gap-6 pt-6 justify-center">
             <a href="{{ app.current_route == 'wine.index.red' ? path('wine.index') : path('wine.index.red') }}" type="button"
-               class="basis-28 py-1.5 px-4 items-center text-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800
-                    hs-scrollspy-active:font-semibold hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] {{ app.current_route == 'wine.index.red' ? 'active' : '' }}">
+               class="product-button {{ app.current_route == 'wine.index.red' ? 'active' : '' }}">
                 Rouges
             </a>
             <a href="{{ app.current_route == 'wine.index.white' ? path('wine.index') : path('wine.index.white') }}" type="button"
-               class="basis-28 py-1.5 px-4 items-center text-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 hs-scrollspy-active:font-semibold hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] {{ app.current_route == 'wine.index.white' ? 'active' : '' }}">
+               class="product-button {{ app.current_route == 'wine.index.white' ? 'active' : '' }}">
                 Blancs
             </a>
             <a href="{{ app.current_route == 'wine.index.champagne' ? path('wine.index') : path('wine.index.champagne') }}" type="button"
-               class="basis-28 py-1.5 px-4 items-center text-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 hs-scrollspy-active:font-semibold hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827] {{ app.current_route == 'wine.index.champagne' ? 'active' : '' }}">
+               class="product-button {{ app.current_route == 'wine.index.champagne' ? 'active' : '' }}">
                 Champagnes
             </a>
         </div>
         <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
             {% for wine in wines %}
                 <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-                    <div class="flex items-end justify-end h-56 w-full bg-cover"
+                    <div class="flex items-end justify-end h-80 w-full bg-contain bg-no-repeat bg-center"
                          style="background-image: url({{ asset('images/wines/') ~ wine.thumbnail }})">
                         <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
                             <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

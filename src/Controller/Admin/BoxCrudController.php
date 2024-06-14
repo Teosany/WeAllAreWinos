@@ -18,6 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints\Image;
 
 class BoxCrudController extends AbstractCrudController
 {
@@ -35,7 +36,8 @@ class BoxCrudController extends AbstractCrudController
         yield ImageField::new('thumbnail')
             ->setUploadDir('public/images/boxes/')
             ->setBasePath('images/boxes/')
-            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]');
+            ->setUploadedFileNamePattern('[slug]-[timestamp].[extension]')
+        ->setFileConstraints(new Image(maxSize: '10000k'));
         yield ChoiceField::new('status');
         yield TextEditorField::new('plot');
         yield AssociationField::new('wine');

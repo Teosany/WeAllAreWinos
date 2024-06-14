@@ -17,3 +17,8 @@ body
 .menu-ul-li-a {
     @apply hover:text-zinc-950 relative last-of-type:before:absolute before:absolute before:top-1/2 before:start-0 before:-translate-y-1/2 before:size-1 before:rounded-full dark:text-neutral-400 dark:before:bg-neutral-600 hs-scrollspy-active:text-[#101827] hs-scrollspy-active:font-normal
 }
+
+.product-button {
+    @apply basis-28 py-1.5 px-4 items-center text-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800
+    hs-scrollspy-active:font-semibold hs-scrollspy-active:border-current hs-scrollspy-active:text-[#101827]
+}

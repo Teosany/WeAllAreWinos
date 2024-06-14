@@ -21,7 +21,7 @@ class MainController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
-        $slug = 'red-wine';
+        $slug = 'red';
         $header = $this->categoryRepository->findOneBy(['slug' => $slug]);
         $categories = $this->categoryRepository->findAllExceptThis($slug);
         $wines = $this->wineRepository->findAll();

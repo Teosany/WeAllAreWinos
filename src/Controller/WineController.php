@@ -38,7 +38,7 @@ class WineController extends AbstractController
     #[Route('/red', name: 'index.red')]
     public function red(Request $request): Response
     {
-        $redWine = $this->categoryRepository->findOneBy(['slug' => 'red-wine']);
+        $redWine = $this->categoryRepository->findOneBy(['slug' => 'red']);
         $wines = Pagerfanta::createForCurrentPageWithMaxPerPage(
             new ArrayAdapter($this->wineRepository->findBy(['status' => 'available', 'category' => $redWine->getId()])),
             $request->query->get('page', 1),
@@ -51,7 +51,7 @@ class WineController extends AbstractController
     #[Route('/white', name: 'index.white')]
     public function white(Request $request): Response
     {
-        $whiteWine = $this->categoryRepository->findOneBy(['slug' => 'white-wine']);
+        $whiteWine = $this->categoryRepository->findOneBy(['slug' => 'white']);
         $wines = Pagerfanta::createForCurrentPageWithMaxPerPage(
             new ArrayAdapter($this->wineRepository->findBy(['status' => 'available', 'category' => $whiteWine->getId()])),
             $request->query->get('page', 1),
