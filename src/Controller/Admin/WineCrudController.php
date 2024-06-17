@@ -33,7 +33,7 @@ class WineCrudController extends AbstractCrudController
         yield TextField::new('title');
         yield SlugField::new('slug')->setTargetFieldName('title');
         yield MoneyField::new('price')->setCurrency('EUR');
-        yield ImageField::new('thumbnail')->setUploadDir('public/images/wines/')->setBasePath('images/wines/')->setUploadedFileNamePattern('[year]/[month]/[day]/[slug]-[contenthash].[extension]');;
+        yield ImageField::new('thumbnail')->setUploadDir('public/images/wines/')->setBasePath('images/wines/')->setUploadedFileNamePattern('[slug].[extension]');;
         yield ChoiceField::new('status');
         yield TextEditorField::new('plot');
         yield TextField::new('isbn');
