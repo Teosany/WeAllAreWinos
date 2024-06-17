@@ -20,6 +20,7 @@ class MainController extends AbstractController
     {
     }
     #[Route('/', name: 'index')]
+    #[Cache(maxage: 3600, public: true)]
     public function index(): Response
     {
         $slug = 'red';
