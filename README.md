@@ -5,7 +5,7 @@ Administration panel: https://in-vino-verba.zeabur.app/admin
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details. 
 
 
 ### Deployed on Zeabur
